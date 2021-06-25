@@ -17771,6 +17771,10 @@ video {
   background-image: url('logo.svg');
 }
 
+.bg-loading{
+  background-image: url('fetching.svg');
+}
+
 .from-transparent{
   --tw-gradient-from: transparent;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
@@ -21075,6 +21079,10 @@ video {
 
 .bg-30vh{
   background-size: 30vh;
+}
+
+.bg-35vh{
+  background-size: 35vh;
 }
 
 .bg-40vh{
@@ -49378,6 +49386,10 @@ video {
     background-image: url('logo.svg');
   }
 
+  .sm\:bg-loading{
+    background-image: url('fetching.svg');
+  }
+
   .sm\:from-transparent{
     --tw-gradient-from: transparent;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
@@ -52682,6 +52694,10 @@ video {
 
   .sm\:bg-30vh{
     background-size: 30vh;
+  }
+
+  .sm\:bg-35vh{
+    background-size: 35vh;
   }
 
   .sm\:bg-40vh{
@@ -80573,6 +80589,10 @@ video {
     background-image: url('logo.svg');
   }
 
+  .md\:bg-loading{
+    background-image: url('fetching.svg');
+  }
+
   .md\:from-transparent{
     --tw-gradient-from: transparent;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
@@ -83877,6 +83897,10 @@ video {
 
   .md\:bg-30vh{
     background-size: 30vh;
+  }
+
+  .md\:bg-35vh{
+    background-size: 35vh;
   }
 
   .md\:bg-40vh{
@@ -111768,6 +111792,10 @@ video {
     background-image: url('logo.svg');
   }
 
+  .lg\:bg-loading{
+    background-image: url('fetching.svg');
+  }
+
   .lg\:from-transparent{
     --tw-gradient-from: transparent;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
@@ -115072,6 +115100,10 @@ video {
 
   .lg\:bg-30vh{
     background-size: 30vh;
+  }
+
+  .lg\:bg-35vh{
+    background-size: 35vh;
   }
 
   .lg\:bg-40vh{
@@ -142963,6 +142995,10 @@ video {
     background-image: url('logo.svg');
   }
 
+  .xl\:bg-loading{
+    background-image: url('fetching.svg');
+  }
+
   .xl\:from-transparent{
     --tw-gradient-from: transparent;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
@@ -146267,6 +146303,10 @@ video {
 
   .xl\:bg-30vh{
     background-size: 30vh;
+  }
+
+  .xl\:bg-35vh{
+    background-size: 35vh;
   }
 
   .xl\:bg-40vh{
@@ -174158,6 +174198,10 @@ video {
     background-image: url('logo.svg');
   }
 
+  .\32xl\:bg-loading{
+    background-image: url('fetching.svg');
+  }
+
   .\32xl\:from-transparent{
     --tw-gradient-from: transparent;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
@@ -177462,6 +177506,10 @@ video {
 
   .\32xl\:bg-30vh{
     background-size: 30vh;
+  }
+
+  .\32xl\:bg-35vh{
+    background-size: 35vh;
   }
 
   .\32xl\:bg-40vh{

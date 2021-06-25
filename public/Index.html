@@ -7,36 +7,140 @@
     <title>Youtube DL</title>
 
     <link rel="stylesheet" href="styles.css">
+
+         <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+
 </head>
-<body>
+<body class="bg-red-100">
     
     <header class="bg-red-900 text-red-100">
         <nav class="flex justify-around">
             <a href="">Home</a>
             <a href="">About</a>
             <a href="">Fork</a>
-            <a href="">Hello</a>
+            <a href="">API</a>
         </nav>
     </header>
     <main class="">
         <!-- Wrapper -->
         <div class="bg-gradient-to-b from-red-800 to-red-100 ">
             <!-- bg-no-repeat bg-center  -->
-          <div class="bg-youtube-logo bg-40vh bg-no-repeat bg-center">
+          <div class="bg-youtube-logo bg-40vh bg-no-repeat bg-center" id="background">
             <div class="min-h-screen flex items-center  justify-center flex-col gap-y-56" >
-                <h2 class="text-2xl text-red-300 font-customFont border-b p-1 ">Youtube Video Downloader</h2>
+                <h2 class="text-2xl text-red-300 font-customFont border-b  p-1 ">Youtube Video Downloader</h2>
                 
                 <div class="grid grid-cols-4 gap-x-2">
-                    <input type="" class="border-b-4 opacity-50 rounded col-span-3" placeholder="Enter YouTube Url">
-                    <button class="rounded p-2 transition duration-500 ease-in-out border hover:bg-red-300  hover:border-gray-800 transform hover:scale-110">Download</button>
-                    <div></div>
-                    <div></div>
+                    
+                        <input type="text" class="opacity-50 text-opacity-100 text-black pl-3 border-b-4  rounded col-span-3" placeholder="Enter YouTube Url" id="ytURL">
+                        <button class="rounded p-2 transition duration-200 ease-in-out border hover:bg-red-300 hover:border-gray-800 transform hover:scale-110 hover:shadow-lg" id="infoBtn">Download</button>
+
+                    
+                    
                 </div>
                 
 
             </div>
       </div>
     </div>
+    <!-- Video Details -->
+    <div class="hidden" id="videoDetails">
+        <!-- thumbnail    -->
+        <div class=" text-center">
+            <img src="https://i.ytimg.com/vi/T54LOlTFDD0/maxresdefault.jpg" alt="Thumbnail" class="mx-auto max-w-3xl max-h-96 object-cover" id="thumbnail">
+            <h2 class="text-xl uppercase p-3" id="title">Lorem ipsum</h2>
+            <p class="text-center max-w-full px-8 mx-64" id="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, tempore quasi! Odio corrupti aspernatur, quod, molestiae id in voluptatum necessitatibus harum quis fugiat blanditiis suscipit alias autem adipisci facilis eum.</p>
+        </div>
+        <!-- Download Options -->
+        <div class="w-full text-center my-4 p-3">
+            <select class="p-1 pl-4 h-12 w-32 bg-red-300 rounded hover:bg-red-600 hover:scale-110 hover:text-red-200 transform duration-100 ease-in-out" id="downloadOptions"> </select>
+            <button class="ml-4 p-1 pl-4 h-12 w-32 rounded bg-red-400 border-l-2 border-r-2 border-red-900 border-solid" id="download">Download</button>
+        </div>
+    </div>
     </main>
+    <script>
+        const host = "https://youtubedl.gq/";
+        const infoBtn = document.getElementById("infoBtn");
+        const backgroundDiv = document.getElementById("background").classList;
+        infoBtn.addEventListener("click",()=> {
+            console.log("Clicked");
+            let videoURL = document.getElementById("ytURL").value.trim();
+            if(videoURL.length == 0){
+                alert("Please enter a youtube url");
+                return;
+            }
+            // Everything OK Fetch video details
+            /* Show progress bar */
+            backgroundDiv.replace("bg-youtube-logo", "bg-loading");
+            backgroundDiv.replace("bg-40vh", "bg-20vh");
+            console.log('Fetching from '+host+'videoInfo?videoURL='+videoURL);
+                fetch(host+"videoInfo?videoURL="+videoURL).then((response)=> {
+                return response.json();
+            })
+            .then(receivedData => {
+                console.log(receivedData);
+                backgroundDiv.replace("bg-loading", "bg-youtube-logo");
+                backgroundDiv.replace("bg-20vh", "bg-40vh");
+
+                let detailsNodes = {
+                    thumbnail:document.getElementById("thumbnail"),
+                    title: document.getElementById("title"),
+                    description: document.getElementById("description"),
+                    videoURL: videoURL,
+                    downloadOptions: document.getElementById("downloadOptions")
+                }
+                let html = "";
+                for(let i=0;i<receivedData.formats.length; i++){
+                    // if(receivedData.formats[i].container != "mp4"){
+                    //     continue;
+                    // }
+                    if(receivedData.formats[i].hasAudio==false || receivedData.formats[i].hasVideo==false){
+                        continue;
+                    }
+                    
+                    html += `
+                    <option value ="${receivedData.formats[i].itag}">
+                        ${receivedData.formats[i].container} - ${receivedData.formats[i].qualityLabel}
+                    </option>
+                    `;
+
+                    detailsNodes.thumbnail.src = receivedData.videoDetails.thumbnails[receivedData.videoDetails.thumbnails.length - 1].url;
+                    detailsNodes.title.innerText = receivedData.videoDetails.title;
+                    detailsNodes.description.innerText = receivedData.videoDetails.description;
+                    detailsNodes.videoURL.value = videoURL;
+                    detailsNodes.downloadOptions.innerHTML = html;
+
+
+                    document.getElementById("videoDetails").style.display = "block";
+                    document.getElementById("videoDetails").scrollIntoView({behavior: "smooth"});
+
+                    
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                backgroundDiv.replace("bg-loading", "bg-youtube-logo");
+                backgroundDiv.replace("bg-20vh", "bg-40vh");
+                alert("Something went wrong, Try again.");
+            });
+
+        });
+
+
+        /* Second Download Button */
+        document.getElementById("download").addEventListener("click",function(){
+			let videoURL = document.getElementById("ytURL").value;
+			let itag = document.getElementById("downloadOptions").value;
+           
+            
+			window.open(host + "download?videoURL="+videoURL+"&itag="+itag);
+		});
+    </script>
 </body>
 </html>
