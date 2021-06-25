@@ -36,7 +36,7 @@
             <div class="min-h-screen flex items-center  justify-center flex-col gap-y-56" >
                 <h2 class="text-2xl text-red-300 font-customFont border-b  p-1 ">Youtube Video Downloader</h2>
                 
-                <div class="grid grid-cols-4 gap-x-2">
+                <div class="grid grid-cols-4 gap-x-2" id="dlOptionsGroup">
                     
                         <input type="text" class="opacity-50 text-opacity-100 text-black pl-3 border-b-4  rounded col-span-3" placeholder="Enter YouTube Url" id="ytURL">
                         <button class="rounded p-2 transition duration-200 ease-in-out border hover:bg-red-300 hover:border-gray-800 transform hover:scale-110 hover:shadow-lg" id="infoBtn">Download</button>
@@ -68,6 +68,7 @@
         const host = "https://youtubedl.gq/";
         const infoBtn = document.getElementById("infoBtn");
         const backgroundDiv = document.getElementById("background").classList;
+        
         infoBtn.addEventListener("click",()=> {
             console.log("Clicked");
             let videoURL = document.getElementById("ytURL").value.trim();
@@ -118,7 +119,7 @@
 
 
                     document.getElementById("videoDetails").style.display = "block";
-                    document.getElementById("videoDetails").scrollIntoView({behavior: "smooth"});
+                    document.getElementById("dlOptionsGroup").scrollIntoView({behavior: "smooth"});
 
                     
                 }
