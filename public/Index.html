@@ -76,12 +76,7 @@
                 alert("Please enter a youtube url");
                 return;
             }
-            if(!videoURL.startsWith("https://")){
-                videoURL = "https://"+videoURL;
-            }
-            if(!videoURL.startsWith("https://www.")){
-                videoURL = "https://www."+ document.getElementById("ytURL").value.trim();
-            }
+            videoURL = addhttps(videoURL);
             document.getElementById("ytURL").value = videoURL;
             // Everything OK Fetch video details
             /* Show progress bar */
@@ -149,6 +144,13 @@
             
 			window.open(host + "download?videoURL="+videoURL+"&itag="+itag);
 		});
+
+        function addhttps(url) {
+            if (!/^(?:f|ht)tps?\:\/\//.test(url)) {
+                url = "https://" + url;
+            }
+            return url;
+        }
     </script>
 </body>
 </html>
