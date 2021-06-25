@@ -76,6 +76,13 @@
                 alert("Please enter a youtube url");
                 return;
             }
+            if(!videoURL.startsWith("https://")){
+                videoURL = "https://"+videoURL;
+            }
+            if(!videoURL.startsWith("https://www.")){
+                videoURL = "https://www."+ document.getElementById("ytURL").value.trim();
+            }
+            document.getElementById("ytURL").value = videoURL;
             // Everything OK Fetch video details
             /* Show progress bar */
             backgroundDiv.replace("bg-youtube-logo", "bg-loading");
