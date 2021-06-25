@@ -1,7 +1,7 @@
 const ytdl = require('ytdl-core');
 const path = require('path');
 exports.getIndex = (req,res,next) => {
-    res.sendFile('index.html', { root: path.join(__dirname, '../views') });
+    res.sendFile('Index.html', { root: path.join(__dirname, '../public') });
 };
 
 
