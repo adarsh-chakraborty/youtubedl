@@ -1,3 +1,4 @@
 node_modules/
 .vscode/
 # npm i git://github.com/fent/node-ytdl-core.git#d1f535712410eebd79a7468abd07d94f8c4ebe5a
+# "ytdl-core": "git+https://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@github.com/adarsh-chakraborty/node-ytdl-core.git#master"
