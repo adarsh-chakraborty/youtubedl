@@ -3,9 +3,6 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      fontFamily: {
-        'customFont': ['Dela Gothic One']
-      },
       backgroundImage: theme => ({
         'youtube-logo': "url('logo.svg')",
         'loading': "url('fetching.svg')"
