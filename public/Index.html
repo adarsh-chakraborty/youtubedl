@@ -84,8 +84,8 @@
             backgroundDiv.replace("bg-40vh", "bg-20vh");
             console.log('Fetching from '+host+'videoInfo?videoURL='+videoURL);
                 fetch(host+"videoInfo?videoURL="+videoURL).then((response)=> {
-                    if(!res.ok){
-                        console.log(res);
+                    if(!response.ok){
+                        console.log(response);
                         throw Error("Unable to fetch video details, Try Again.");
                     }
                     return response.json();
