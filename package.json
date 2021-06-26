@@ -13,7 +13,7 @@
     "cors": "^2.8.5",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "ytdl-core": "git+https://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@github.com/adarsh-chakraborty/node-ytdl-core.git#master"
+    "ytdl-core": "git+https://adarsh-chakraborty@github.com/adarsh-chakraborty/node-ytdl-core.git#master"
     
   },
   "devDependencies": {
